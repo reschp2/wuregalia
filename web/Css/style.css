@@ -1,0 +1,16 @@
+.search-icon{
+        border-color: transparent;
+        background-color: transparent;
+}
+
+header {
+        backgroud-color: #C6D2E1;
+}
+
+footer {
+        background-color:#FFEEBB;
+}
+
+footer .row {
+        padding-top:2%;
+}

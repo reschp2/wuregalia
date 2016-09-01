@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>School list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for school in schools %}
+            <tr>
+                <td><a href="{{ path('school_show', { 'id': school.id }) }}">{{ school.id }}</a></td>
+                <td>{{ school.name }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('school_show', { 'id': school.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('school_edit', { 'id': school.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('school_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

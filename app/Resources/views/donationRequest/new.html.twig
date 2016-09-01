@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <br>
+    <h1>Donation Request</h1>
+    <h3>Please fill out the form: </h3>
+    {{ form_start(form) }}
+    <table>
+        <tr>
+            <td> {{ form_label(form.itemType)  }}  </td>
+            <td> {{ form_widget(form.itemType) }} </td>
+            <td> {{ form_errors(form.itemType) }} </td>
+        </tr>
+        <tr>
+            <td> {{ form_label(form.itemColor)  }}  </td>
+            <td> {{ form_widget(form.itemColor) }} </td>
+            <td> {{ form_errors(form.itemColor) }} </td>
+        </tr>
+        <tr>
+            <td> {{ form_label(form.itemSchool)  }}  </td>
+            <td> {{ form_widget(form.itemSchool) }} </td>
+            <td> {{ form_errors(form.itemSchool) }} </td>
+        </tr>
+        <tr>
+            <td> {{ form_label(form.itemMajor)  }}  </td>
+            <td> {{ form_widget(form.itemMajor) }} </td>
+            <td> {{ form_errors(form.itemMajor) }} </td>
+        </tr>
+        <tr>
+            <td> {{ form_label(form.itemSize)  }}  </td>
+            <td> {{ form_widget(form.itemSize) }} </td>
+            <td> {{ form_errors(form.itemSize) }} </td>
+        </tr>
+        <tr>
+            <td> {{ form_label(form.itemDescription)  }}  </td>
+            <td> {{ form_widget(form.itemDescription) }} </td>
+            <td> {{ form_errors(form.itemDescription) }} </td>
+        </tr>
+        <tr>
+        </tr>
+    </table>
+    {{ form_rest(form) }}
+
+    {{ form_end(form) }}
+
+{% endblock %}

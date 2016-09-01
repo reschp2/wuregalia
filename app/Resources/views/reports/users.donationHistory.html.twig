@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% embed "admin_base.html.twig" %} {% endembed %}
+    <br>
+    <br>
+
+    {% if user %}
+    <h3>Donation History for {{ user|first.user.username }}</h3>
+    {% endif %}
+
+    <table border="1" >
+        <thead>
+            <tr>
+                <th>Item ID</th>
+                <th>Description</th>
+                <th>Item Type</th>
+                <th>Status</th>
+                <th>Color</th>
+                <th>Donor</th>
+                <th>School</th>
+                <th>Discipline</th>
+                <th>Size</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for donation in user %}
+            <tr>
+                <td align="center">{{ donation.id }}</td>
+                <td align="center">{{ donation.itemDescription }}</td>
+                <td align="center">{{ donation.itemType.name }}</td>
+                <td align="center">{{ donation.itemStatus.name }}</td>
+                <td align="center">{{ donation.itemColor.name }}</td>
+                <td align="center">{{ donation.user.username }}</td>
+                <td align="center">{{ donation.itemSchool.name }}</td>
+                <td align="center">{{ donation.itemMajor.name }}</td>
+                <td align="center">{{ donation.itemSize }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

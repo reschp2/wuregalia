@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Major list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for major in majors %}
+            <tr>
+                <td><a href="{{ path('major_show', { 'id': major.id }) }}">{{ major.id }}</a></td>
+                <td>{{ major.name }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('major_show', { 'id': major.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('major_edit', { 'id': major.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('major_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

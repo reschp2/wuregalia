@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% embed "admin_base.html.twig" %} {% endembed %}
+    <br>
+    <br>
+
+    <h3>All Inventory Items</h3>
+    <table class="table table-hover" >
+        <thead>
+            <tr>
+                <th>Item Id</th>
+                <th>Item Description</th>
+                <th>Item Type</th>
+                <th>Item Status</th>
+                <th>Item Color</th>
+                <th>Item Donor</th>
+                <th>Item School</th>
+                <th>Item Discipline</th>
+                <th>Item Size</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for inventory in items %}
+            <tr>
+                <td align="center">{{ inventory.id }}</td>
+                <td align="center">{{ inventory.itemDescription }}</td>
+                <td align="center">{{ inventory.itemType.name }}</td>
+                <td align="center">{{ inventory.itemStatus.name }}</td>
+                <td align="center">{{ inventory.itemColor.name }}</td>
+                <td align="center">{{ inventory.user.username }}</td>
+                <td align="center">{{ inventory.itemSchool.name }}</td>
+                <td align="center">{{ inventory.itemMajor.name }}</td>
+                <td align="center">{{ inventory.itemSize }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

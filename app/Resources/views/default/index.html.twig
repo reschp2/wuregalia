@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block loginError %}
+{% if loginMessage%}
+<p class="pull-xs-right"><small>{{ loginMessage }}</small></p>
+{% endif %}
+{% endblock %}
+
+{% block body %}
+{# Filter form implementation #}
+<form action="#">
+  <div class="form-group">
+
+  </div>
+</form>
+
+<div class="jumbotron">
+  <div class="container">
+    <div class="card-deck-wrapper">
+      <div class="card-deck">
+        <div class="card">
+          <img class="card-img-top img-responsive center-block" src="{{ asset('Images/gown.jpg') }}" alt="Card image cap">
+          <div class="card-block">
+            <h4 class="card-title text-xs-center">GOWN</h4>
+            <p class="card-text text-xs-center">Click View to see all Regalia Gowns in the closet</p>
+            <a href="{{ path('inventory_filter', {'filter' : "Gown"}) }}" class="btn btn-info-outline center-block">View</a>
+          </div>
+        </div>
+        <div class="card">
+          <br>
+          <img class="card-img-top img-responsive center-block" src="{{ asset('Images/cap.jpg') }}" alt="Card image cap">
+          <br>
+          <br>
+          <div class="card-block">
+            <h4 class="card-title text-xs-center">CAP</h4>
+            <p class="card-text text-xs-center">Click View to see all Regalia Caps in the closet</p>
+            <a href="{{ path('inventory_filter', {'filter' : "Cap"}) }}" class="btn btn-info-outline center-block">View</a>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top img-responsive center-block" src="{{ asset('Images/hood.jpg') }}" alt="Card image cap">
+          <div class="card-block">
+            <h4 class="card-title text-xs-center">HOOD</h4>
+            <p class="card-text text-xs-center">Click View to see all Regalia Hoods in the closet</p>
+            <a href="{{ path('inventory_filter', {'filter' : "Hood"}) }}" class="btn btn-info-outline center-block">View</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Item Type</th>
+      <th>Item Description</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for inventory in inventories %}
+      <tr>
+        <th scope="row">{{inventory.itemType}}</th>
+        <td>{{inventory.itemDescription}}</td>
+        <td><a href="{{ path('rent_item', { 'id': inventory.id }) }}" class="btn btn-primary-outline" role="button">Rent</a></td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+
+
+{% endblock %}

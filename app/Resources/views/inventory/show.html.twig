@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Inventory</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ inventory.id }}</td>
+            </tr>
+            <tr>
+                <th>ItemType</th>
+                <td>{{ inventory.itemType }}</td>
+            </tr>
+            <tr>
+                <th>ItemSchool</th>
+                <td>{{ inventory.itemSchool }}</td>
+            </tr>
+            <tr>
+                <th>Itemmajor</th>
+                <td>{{ inventory.itemMajor }}</td>
+            </tr>
+            <tr>
+                <th>itemcolor</th>
+                <td>{{ inventory.itemColor }}</td>
+            </tr>
+            <tr>
+                <th>itemsize</th>
+                <td>{{ inventory.itemSize }}</td>
+            </tr>
+            <tr>
+                <th>itemstatus</th>
+                <td>{{ inventory.itemStatus }}</td>
+            </tr>
+            <tr>
+                <th>itemdescription</th>
+                <td>{{ inventory.itemDescription }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('inventory_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('inventory_edit', { 'id': inventory.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

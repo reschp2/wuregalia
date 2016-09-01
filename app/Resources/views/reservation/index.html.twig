@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Reservation list</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Item Id</th>
+                <th>Item Type</th>
+                <th>Username</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Rental Date</th>
+                <th>Due Date</th>
+                <th>Overdue</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+            <tr>
+                
+                <td>{{reservation.item.id}}</td>
+                <td>{{reservation.item.itemType}}</td>
+                <td>{{reservation.userid.username}}</td>
+                <td>{{reservation.userid.fname}}</td>
+                <td>{{reservation.userid.lname}}</td>
+                <td>{{reservation.userid.email}}</td>
+                <td>{% if reservation.createDate %}{{ reservation.createDate|date('n-j-Y') }}{% endif %}</td>
+                <td>{% if reservation.dueDate %}{{ reservation.dueDate|date('n-j-Y') }}{% endif %}</td>
+                <td>{% if reservation.isLate() %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <a href="{{ path('reservation_delete', { 'id': reservation.id }) }}">Mark as Returned</a>
+                </td>
+                <td>
+                    <a href="{{ path('reservation_edit', { 'id': reservation.id }) }}">edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h3><a href="{{ path('reservation_notify') }}" onclick="return confirm('Are you sure you want to send an email all users with an overdue rental?')">Notify</a></h3>
+{% endblock %}

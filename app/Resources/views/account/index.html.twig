@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class"container">
+    <div class="card">
+        <div class="card-block">
+            <h4 class="card-title text-xs-center">{{app.user.Fname}} {{app.user.Lname}}</h4>
+            <a href="/logout" type="button" class="btn btn-primary-outline pull-xs-right">Logout</a>
+        </div>
+    </div>
+</div>
+<section class="container">
+    <table class="table table-hover">
+        {% for reservation in reservations %}
+            <tr>
+                <td>{{reservation.item.itemType}}</td>
+                <td>{% if reservation.createDate %}{{ reservation.createDate|date('n-j-Y') }}{% endif %}</td>
+                <td>{% if reservation.dueDate %}{{ reservation.dueDate|date('n-j-Y') }}{% endif %}</td>
+                <td>{% if reservation.approved %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+{% endblock %}

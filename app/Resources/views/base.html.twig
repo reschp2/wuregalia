@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}WU Regalia{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+            <link rel="stylesheet" href="{{ asset('Css/Style.css')}}">
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% block nav %}
+            <header>
+                {# Navigation starts here #}
+  			   <nav class="navbar navbar-light bg-faded">
+                  <div class="nav navbar-nav">
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a class="nav-item nav-link" href="{{ path('adminDonationRequest') }}">Manage Donations</a>
+                        <a class="nav-item nav-link" href="{{ path('adminSpecialRequest') }}">Manage Requests</a>
+                        <a class="nav-item nav-link" href="{{ path('reservation_index') }}">Manage Reservations</a>
+                        <a class="nav-item nav-link" href="{{ path('user_index') }}">Account Management</a>
+                        <a class="nav-item nav-link" href="{{ path('reports') }}">Reports</a>
+                        {#<a href="/logout" type="button" class="btn btn-primary-outline pull-xs-right">Logout</a>#}
+                    {% else %}
+                    <a class="nav-item nav-link active" href="{{ path('homepage') }}">WU Regalia Closet <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="{{ path('specialRequest') }}">Request</a>
+                    <a class="nav-item nav-link" href="{{ path('donationRequest') }}">Donation</a>
+                    {% endif %}
+                    {% if app.user %}
+                      <a class=" pull-xs-right" href="{{ path('account_index') }}">{{ app.user.Fname }}</a>
+                      <a href="/logout" type="button" class="btn btn-primary-outline pull-xs-right">Logout</a>
+                    {% elseif not app.user %}
+                    <form class="form-inline pull-xs-right" action="/login" method="post">
+                      <div class="form-group">
+                        <input class="form-control" type="text" placeholder="smithj2" id="username" name="_username"/>
+                      </div>
+                      <div class="form-group">
+                          {#<label for="password">Password:</label>#}
+                          <input class="form-control" type="password" placeholder="password" id="password" name="_password" />
+                      </div>
+                      <div class="form-group" id="PasswordField">
+                          <input class="form-control" type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                          <button type="submit" class="btn btn-primary-outline">
+                              login
+                          </button>
+                      </div>
+                    </form>
+                    {% block loginError %} {% endblock %}
+                    {% endif %}
+
+                  </div>
+                </nav>
+
+                {# Navigation ends here #}
+            </header>
+            {% endblock %}
+
+        {% block body %}
+
+        {% endblock %}
+        {% block javascripts %}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+        {% endblock %}
+
+        <!-- Footer starts here -->
+        {% block footer %}
+		<footer>
+			{#<div id="FooterContent" class="text-center">#}
+			<div class="navbar navbar-inverse" role="navigation">
+			    <div class="container">
+    			        <div class="navbar-text pull-left">
+    			            <div class="row">
+    			                <div class="col-md-6">
+    			                    	<h5>Need Help?</h5>
+        				                <p><strong>Call</strong>: 803-999-9999 or <strong>Email</strong>: example@winthrop.edu</p>
+    			                </div>
+
+    			                <div class="col-md-6">
+    			                    	<a role="button" class="btn btn-primary-outline pull-xs-right" href="{{ path('user-download') }}">User Manual</a>
+        				                {% if is_granted('ROLE_ADMIN') %}
+        				                <a role="button" class="btn btn-primary-outline pull-xs-right" href="{{ path('admin-download') }}">Administrator Guide</a>
+        				                {% endif %}
+    			                </div>
+    			            </div>
+
+    			            </div>
+
+
+
+    				</div>
+				</div>
+			</div>
+		</footer>
+		{% endblock %}
+    	<!-- Footer ends here -->
+    </body>
+</html>
+

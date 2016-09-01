@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2> Donation requests submitted to the system :</h2>
+    <br>
+    <table border="1" >
+        <tr>
+            <td>itemID</td>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Status</td>
+            <td>Type</td>
+            <td>Color</td>
+            <td>School</td>
+            <td>Major</td>
+            <td>Description</td>
+            <td>Size</td>
+            <td>Accept</td>
+            <td>Reject</td>
+
+            </th>
+        </tr>
+        {% for donationRequest in donationRequests %}
+            <tr>
+                <td>{{ donationRequest.id }}</td>
+                <td>{{ donationRequest.user }}</td>
+                <td>{{ donationRequest.user.email }}</td>
+                <td>{{ donationRequest.itemStatus }}</td>
+                <td>{{ donationRequest.itemType }}</td>
+                <td>{{ donationRequest.itemColor }}</td>
+                <td>{{ donationRequest.itemSchool }}</td>
+                <td>{{ donationRequest.itemMajor }}</td>
+                <td>{{ donationRequest.itemDescription }}</td>
+                <td>{{ donationRequest.itemSize }}</td>
+                <td> <a href="{{ path('acceptDonationRequest', { 'inventoryRequest': donationRequest.id })}}">Accept</a> </td>
+                <td> <a href="{{ path('rejectDonationRequest', { 'inventoryRequest': donationRequest.id })}}">Reject</a> </td>
+
+            </tr>
+
+    {% endfor %}
+    <table>
+        <br>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2> Special requests submitted to the system :</h2>
+    <br>
+    <table border="1" >
+        <tr>
+            <td>itemID</td>
+            <td>User Name</td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Email</td>
+            <td>Status</td>
+            <td>Type</td>
+            <td>Color</td>
+            <td>School</td>
+            <td>Major</td>
+            <td>Description</td>
+            <td>Size</td>
+            <td>Accept</td>
+            <td>Reject</td>
+
+            </th>
+        </tr>
+        {% for specialRequest in specialRequests %}
+            <tr>
+                <td>{{ specialRequest.id }}</td>
+                <td>{{ specialRequest.user }}</td>
+                <td>{{ specialRequest.user.fname }}</td>
+                <td>{{ specialRequest.user.lname }}</td>
+                <td>{{ specialRequest.user.email }}</td>
+                <td>{{ specialRequest.itemStatus }}</td>
+                <td>{{ specialRequest.itemType }}</td>
+                <td>{{ specialRequest.itemColor }}</td>
+                <td>{{ specialRequest.itemSchool }}</td>
+                <td>{{ specialRequest.itemMajor }}</td>
+                <td>{{ specialRequest.itemDescription }}</td>
+                <td>{{ specialRequest.itemSize }}</td>
+                <td> <a href="{{ path('acceptSpecialRequest', { 'inventoryRequest': specialRequest.id })}}">Accept</a> </td>
+                <td> <a href="{{ path('rejectSpecialRequest', { 'inventoryRequest': specialRequest.id })}}">Reject</a> </td>
+
+            </tr>
+
+    {% endfor %}
+    <table>
+
+{% endblock %}

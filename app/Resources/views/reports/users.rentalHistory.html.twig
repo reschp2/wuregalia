@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% embed "admin_base.html.twig" %} {% endembed %}
+    <br>
+    <br>
+
+    {% if user %}
+    <h3>Rental History for {{ user|first.userid.username }}</h3>
+    {% endif %}
+
+    <table border="1" >
+        <thead>
+            <tr>
+                <th>Rental Id</th>
+                <th>Createdate</th>
+                <th>Duedate</th>
+                <th>Approved</th>
+                <th>Item ID</th>
+                <th>Item Type</th>
+                <th>Item Color</th>
+                <th>Item School</th>
+                <th>Item Discipline</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation in user %}
+            <tr>
+                <td align="center">{{ reservation.id }}</a></td>
+                <td align="center">{% if reservation.createDate %}{{ reservation.createDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td align="center">{% if reservation.dueDate %}{{ reservation.dueDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td align="center">{% if reservation.approved %}Yes{% else %}No{% endif %}</td>
+                <td align="center">{{ reservation.item.id }}</td>
+                <td align="center">{{ reservation.item.itemType.name }}</td>
+                <td align="center">{{ reservation.item.itemColor.name }}</td>
+                <td align="center">{{ reservation.item.itemSchool.name }}</td>
+                <td align="center">{{ reservation.item.itemMajor.name }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

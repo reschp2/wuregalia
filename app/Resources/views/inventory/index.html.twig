@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Inventory list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Itemdescription</th>
+                <th>ItemType</th>
+                <th>ItemSchool</th>
+                <th>ItemMajor</th>
+                <th>itemColor</th>
+                <th>itemSize</th>
+                <th>itemStatus</th>
+                <th>itemDescription</th>
+
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for inventory in inventories %}
+            <tr>
+                <td><a href="{{ path('inventory_show', { 'id': inventory.id }) }}">{{ inventory.id }}</a></td>
+                <td>{{ inventory.itemDescription }}</td>
+                <td>{{ inventory.itemType }}</td>
+                <td>{{ inventory.itemSchool }}</td>
+                <td>{{ inventory.itemMajor }}</td>
+                <td>{{ inventory.itemColor }}</td>
+                <td>{{ inventory.itemSize }}</td>
+                <td>{{ inventory.itemStatus }}</td>
+                <td>{{ inventory.itemDescription }}</td>
+
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('inventory_show', { 'id': inventory.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('inventory_edit', { 'id': inventory.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('inventory_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

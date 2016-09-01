@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2>All Users</h2>
+    <table border="1" >
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fname</th>
+                <th>Lname</th>
+                <th>Email</th>
+                <th>Username</th>
+                <th>Signup Date</th>
+                <th>User Privileges</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td align="center">{{ user.id }}</a></td>
+                <td align="center">{{ user.fname }}</td>
+                <td align="center">{{ user.lname }}</td>
+                <td align="center">{{ user.email }}</td>
+                <td align="center">{{ user.username }}</td>
+                <td align="center">{% if user.signupdate %}{{ user.signupdate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td align="center">{% if user.adminpriv == 1 %}Administrator{% else %}None{% endif %}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

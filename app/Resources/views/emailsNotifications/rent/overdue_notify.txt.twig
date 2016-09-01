@@ -1,0 +1,38 @@
+<h3>Attention: Regalia Item Due  </h3>
+
+The following item rented from the Wu Regalia Closet is due to be returned: <br>
+
+<table>
+    <tr>
+        <td> Type: </td>
+        <td>  {{ item.itemType }}  </td>
+    </tr>
+    <tr>
+        <td> Color :  </td>
+        <td>  {{item.itemColor }}  </td>
+    </tr>
+    <tr>
+        <td> School :  </td>
+        <td>  {{ item.itemSchool }}  </td>
+    </tr>
+    <tr>
+        <td> Major </td>
+        <td>  {{ item.itemMajor }}  </td>
+    </tr>
+    <tr>
+        <td> Username : </td>
+        <td> {{ user.username }} </td>
+    </tr>
+    <tr>
+        <td> Name : </td>
+        <td> {{ user.fname }} {{ user.lname }} </td>
+    </tr>
+
+    </table>
+    <br><br>
+
+
+<p>Please return this item to {{ admin }} at the Dacus Library as soon as possible.</p>
+Thank you for using WU Regalia Closet.
+<br><br>
+<a href="{{ path('homepage') }}">WU regalia Closet</a>

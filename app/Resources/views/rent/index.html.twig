@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Inventory</h1>
+    {% if msg %}
+        <p>{{ msg }}</p>
+    {% endif %}
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Regalia Type </th>
+                <th>Color </th>
+                <th>School </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in aval%}
+            <tr>
+                <td>{{ item.itemType }}</td>
+                <td>{{ item.itemColor }}</td>
+                <td>{{ item.itemSchool }}</td>
+                <td>
+                    <a href="{{ path('rent_item', { 'id': item.id }) }}">Rent</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

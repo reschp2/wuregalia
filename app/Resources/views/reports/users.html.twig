@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% embed "admin_base.html.twig" %} {% endembed %}
+    <br>
+    <br>
+
+    <h3>All Users</h3>
+        <table border="1" >
+        <thead>
+            <tr>
+                <th>User Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Username</th>
+                <th>Signup Date</th>
+                <th>User Privileges</th>
+                <th>Rental History</th>
+                <th>Donation History</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td align="center">{{ user.id }}</a></td>
+                <td align="center">{{ user.fname }}</td>
+                <td align="center">{{ user.lname }}</td>
+                <td align="center">{{ user.email }}</td>
+                <td align="center">{{ user.username }}</td>
+                <td align="center">{% if user.signupdate %}{{ user.signupdate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td align="center">{% if user.adminpriv == 1 %}Administrator{% else %}None{% endif %}</td>
+                <td align="center"> <a href="{{ path('showUserRentalHistory', { 'userID': user.id })}}">Rentals</a> </td>
+                <td align="center"> <a href="{{ path('showUserDonationHistory', { 'userID': user.id })}}">Dontations</a> </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
